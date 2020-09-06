@@ -1,0 +1,34 @@
+<html>
+  <style>
+    #el {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+    }
+  </style>
+  <body onload="startAnnimatition()">
+    <div id="el"></div>
+  </body>
+
+  <script>
+    /***
+     * 直接设置为none无法停到当前位置，而是直接结束了动画，到了最后
+     * 设置computeStyle以前可以现在也不行了
+     */
+    function startAnnimatition() {
+      var el = document.getElementById("el");
+      el.style.transition = "ease 3s";
+      el.style.transform = "translate(300px,300px)";
+      //stop
+      setTimeout(() => {
+        stopAnnimatition();
+      }, 1000);
+    }
+
+    function stopAnnimatition() {
+      var el = document.getElementById("el");
+      el.style.transition = "none";
+      el.style.transform = getComputedStyle(el).transform;
+    }
+  </script>
+</html>
